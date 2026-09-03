@@ -46,7 +46,7 @@ const en: Translations = {
     },
     book:{
         title: "Book an Appointment",
-        body: "To book an appointment with me please call: 514-561-4267",
+        body: "To book an appointment with me please call me 514-561-4267",
         back: "← Back",
     },
 };
@@ -62,16 +62,16 @@ const fr: Translations = {
     },
     hero:{
         name: "Nata Couture",
-        shortdesc: "Alteration and Tailoring Services by a Professional Seamstress with 20+ years in the industry",
+        shortdesc: "Services d'alterations de vêtements divers par une couturière expérimentée",
     },
     gallery:{
-        title: "Portfolio Overview",
-        back: "← Back",
+        title: "Mini Portfolio",
+        back: "← Retour",
     },
     book:{
-        title: "Book an Appointment",
-        body: "To book an appointment with me please call: 514-561-4267",
-        back: "← Back",
+        title: "Prendre un rendez-vous",
+        body: "Pour prendre un rendez-vous s'il-vous-plaît veuillez m'appeler au 514-561-4267",
+        back: "← Retour",
     },
 };
 

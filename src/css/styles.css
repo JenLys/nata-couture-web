@@ -291,6 +291,25 @@ img {
   background: var(--accent-deep);
   transform: translateY(-2px);
 }
+/* CTA section */
+.cta {
+  flex-direction: column;
+  gap: 1.75rem;
+  background: linear-gradient(180deg, var(--cream), var(--accent-soft));
+}
+
+/* Lays the two CTA buttons out side by side, wrapping to stacked on
+   narrow screens (see the phone-width media query near the bottom of
+   this file) rather than ever squeezing or overflowing. */
+.cta__buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
 
 /* ==========================================================
    Gallery page
@@ -405,4 +424,12 @@ img {
   .site-header__nav a {
     font-size: 0.72rem;
   }
+
+  .cta__buttons {
+    flex-direction: column; /* stacked, full-width-feeling buttons on phones */
+    width: 100%;
+    max-width: 280px;
+  }
+
+
 }

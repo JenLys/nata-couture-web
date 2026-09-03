@@ -3,10 +3,12 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
 import BookApt from "./pages/BookApt";
+import { LanguageProvider } from "./language/LanguageSetter";
 
 
 export default function App(){
     return(
+       <LanguageProvider>
         <HashRouter>
             <Header />
             <Routes>
@@ -16,5 +18,7 @@ export default function App(){
                 
             </Routes>
         </HashRouter>
+       </LanguageProvider>
+       
     );
 }

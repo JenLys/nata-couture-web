@@ -1,0 +1,408 @@
+/* Google Fonts: a serif display font for headings, a clean sans-serif
+   for body text — loaded once here rather than per-component. */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --accent: #c3a7c0;
+  --accent-soft: #e6dce5;
+  --accent-deep: #9c7f98;
+  --cream: #faf7f5;
+  --charcoal: #3a363a;
+  --charcoal-soft: #6b6570;
+
+  --font-display: "Montserrat", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --max-width: 1200px;
+  /* Starting/fallback header height, used before JavaScript measures the
+     real one (see Header.tsx's ResizeObserver) and overwrites this same
+     variable with the actual pixel value — keeping this close to the
+     real value just avoids a visible layout jump on first paint. */
+  --header-height: 80px;
+}
+
+* {
+  box-sizing: border-box; /* padding/border included in element width, not added on top */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==========================================================
+   Site header
+   Fixed to the top of the viewport (position: fixed), so it
+   floats above the page content and stays visible while
+   scrolling. Because "fixed" elements are removed from normal
+   document flow, everything below has to explicitly leave
+   room for it — that's what all the var(--header-height) /
+   calc() usages throughout this file are doing.
+   ========================================================== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* min-height (not height): lets the header grow taller on its own if
+     content wraps to a second line (long translated text, narrow
+     screens) instead of clipping it. Header.tsx measures whatever
+     height results and republishes it as --header-height. */
+  min-height: var(--header-height);
+  z-index: 100; /* stack above page content */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo left, nav+toggle pushed right */
+  flex-wrap: wrap; /* allow nav to drop to a second line if it must */
+  gap: 0.6rem 1.5rem;
+  padding: 0.85rem clamp(1rem, 4vw, 2.5rem);
+  background: rgba(250, 247, 245, 0.92); /* --cream, slightly transparent */
+  backdrop-filter: blur(6px); /* soft blur of whatever scrolls behind it */
+  border-bottom: 1px solid var(--accent-soft);
+}
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--charcoal);
+  flex-shrink: 0; /* never let the logo get squeezed by the nav/toggle */
+}
+
+.site-header__logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* circular logo */
+}
+
+.site-header__logo span {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.25rem); /* shrinks smoothly on narrower screens */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.site-header__nav a {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-soft);
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+
+.site-header__nav a:hover {
+  text-decoration-color: var(--accent-deep);
+}
+
+/* ---- Language toggle (EN/FR pill) ---- */
+/* The dark pill is the track; each <button> inside is one language
+   option. Header.tsx adds the "is-active" class to whichever button
+   matches the current language — see the rule right below this one. */
+.lang-toggle {
+  display: flex;
+  background: var(--charcoal);
+  border-radius: 999px; /* fully rounded = pill shape */
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.lang-toggle button {
+  border: none;
+  background: transparent;
+  color: #fff;
+  opacity: 0.55; /* dimmed = inactive language */
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+/* The active language: full opacity + a filled pastel background,
+   giving the impression of a sliding highlight between EN and FR. */
+.lang-toggle button.is-active {
+  opacity: 1;
+  background: var(--accent);
+}
+
+/* ==========================================================
+   Home page: scroll-snap sections
+   Each section fills exactly one screen's height, and
+   scrolling "snaps" to land on a section boundary rather than
+   stopping halfway — the CSS scroll-snap-* properties below
+   are what create that effect, no JavaScript required.
+   ========================================================== */
+
+.scroll-container {
+  /* Push the whole scrolling area below the fixed header, then size it
+     to exactly fill the remaining viewport height. Both read the same
+     --header-height variable Header.tsx keeps up to date. */
+  margin-top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory; /* vertical scrolling snaps to child sections */
+  scroll-behavior: smooth; /* animate the snap instead of jumping instantly */
+}
+
+.scroll-section {
+  height: calc(100vh - var(--header-height)); /* each section = one full "screen" */
+  scroll-snap-align: start; /* snap so the section's top aligns with the container's top */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+/* ---- Hero: logo over a photo with a translucent pastel overlay ---- */
+/* The "translucent color overlay on a photo" technique: layer a
+   semi-transparent gradient ON TOP OF a background image, both in the
+   same `background-image` property (comma-separated — the first layer
+   listed paints on top, the last one paints on the bottom). The rgba()
+   alpha values (0.55 / 0.65) control how strong the tint is; increase
+   them for a more saturated pastel wash, decrease for a more visible
+   photo underneath. --hero-image itself is set inline per-page (see
+   Home.tsx), so this same overlay works with whatever photo you use. */
+.hero {
+  color: #fff;
+  background-image: 
+    var(--hero-image);
+  background-size: cover;
+  background-position: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero__logo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hero__name {
+  font-size: clamp(2.2rem, 5vw, 3.4rem); /* scales with viewport width, within bounds */
+  letter-spacing: 0.06em;
+}
+
+.hero__tagline {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
+
+
+@keyframes floatDown {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+/* Description section */
+.about {
+  flex-direction: column;
+  gap: 1.25rem;
+  background: var(--cream);
+}
+
+.about__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.about__body {
+  max-width: 620px; /* keeps paragraph lines from stretching too wide to read comfortably */
+  font-size: 1.1rem;
+  color: var(--charcoal-soft);
+}
+
+
+.button {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background: var(--accent-deep);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   Gallery page
+   ========================================================== */
+
+.gallery-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  /* Top padding leaves room for the fixed header, same idea as
+     .scroll-container's margin-top above — this page isn't inside the
+     scroll-snap container, so it needs its own equivalent spacing. */
+  padding: calc(var(--header-height) + 2.5rem) 1.5rem 5rem;
+}
+
+/* ==========================================================
+   Static pages (currently just Book Appointment)
+   ========================================================== */
+
+.static-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: calc(var(--header-height) + 4rem) 1.5rem 6rem;
+  text-align: center;
+}
+
+.static-page h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 1.25rem;
+}
+
+.static-page p {
+  color: var(--charcoal-soft);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.gallery-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.back-link {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-deep);
+  border-bottom: 1px solid var(--accent-deep);
+  padding-bottom: 2px;
+}
+
+/* The 2-column grid you asked about — repeat(2, 1fr) makes two equal-
+   width columns; the @media rule near the bottom of this file collapses
+   it to a single column on narrow (phone-width) screens. */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.gallery-item {
+  overflow: hidden; /* clips the image to this container's rounded corners */
+  border-radius: 10px;
+  background: var(--accent-soft);
+  box-shadow: 0 4px 18px rgba(58, 54, 58, 0.08);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3; /* keeps every photo the same shape, regardless of its real dimensions */
+  object-fit: cover; /* crops to fill that shape without distorting/stretching */
+  transition: transform 0.35s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04); /* subtle zoom-in on hover */
+}
+
+/* Responsive tweaks for phone-width screens */
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: 1fr; /* single column instead of two */
+  }
+
+  .hero__logo {
+    width: 76px;
+    height: 76px;
+  }
+
+  .site-header {
+    gap: 0.75rem;
+  }
+
+  .site-header__logo span {
+    display: none; /* hide the business name text, keep just the logo mark */
+  }
+
+  .site-header__nav {
+    gap: 0.9rem;
+  }
+
+  .site-header__nav a {
+    font-size: 0.72rem;
+  }
+}

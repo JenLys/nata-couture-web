@@ -39,7 +39,7 @@ export default function Header() {
             {/* Logo links back to home page if clicked */}
 
             <Link to="/" className="site-header__logo" aria-label="Home">
-            <img src={`${BASE}images/brand/sewing-dress.png`} alt="logo"></img>
+            <img src={`${BASE}images/brand/homeicon.png`} alt="home"></img>
             <span>{currentTxt.hero.name}</span> {/* display "hero" text section's name component in Active language*/}
             </Link>
 

@@ -19,6 +19,7 @@ export interface Translations {
     };
     gallery: {
         title: string;
+        subtext: string;
         back: string;
     };
     book: {
@@ -35,7 +36,7 @@ const en: Translations = {
     },
     description:{
         eyebrow: "Hi, I'm Natalia!",
-        body: "I am a professional seamstress in Laval. Experience in XYZ",
+        body: "I’m a professional senior seamstress based in Laval, with over 20 years of experience in garment alterations and tailoring.I offer alteration and fitting services for women, men, and children 👖👗🥼👕. Whether you need pants, dresses, or sleeves hemmed, or a garment adjusted for a better fit, I’m here to help! And sometimes, I get to use my magic! ✨ \n\n  From transforming oversized garments to making a smaller dress fit, I use my experience and creativity to find the best solution for each unique piece. Each garment is different, so pricing is based on the time, skill, care, materials, and complexity required. For this reason, quotes are provided individually, per item. \n\nTo receive a quote, please book an appointment or reach out to me directly. I’ll be happy to assess your garment and discuss your needs 😊. I strive to provide every client with courteous, honest, and professional service. Feel free to contact me or explore my portfolio highlights to see some of my past work! \n\n I look forward to putting my experience, creativity, and skills to work for you! 💜🪡",
     },
     hero:{
         name: "Nata Couture",
@@ -44,11 +45,12 @@ const en: Translations = {
     },
     gallery:{
         title: "Portfolio Overview",
+        subtext: "All photos have been obtained with client's consent. Do not replicate- property of Nata Couture",
         back: "← Back",
     },
     book:{
         title: "Book an Appointment",
-        body: "To book an appointment with me please call me 514-561-4267",
+        body: "I work during the week and maintain a busy schedule, which is why I offer my services by appointment only. To book an appointment or inquire about pricing, please call me at \n 514-561-4267.\n I’ll be happy to answer your questions and discuss your needs!",
         back: "← Back",
     },
 };
@@ -60,7 +62,7 @@ const fr: Translations = {
     },
     description:{
         eyebrow: "Bonjour je m'appelle Natalia!",
-        body: "Je suis une couturière professionnelle avec plus de 20 ans d'expérience dans la confection de vêtements. Je me situes à Laval XYZ... ",
+        body: "Je suis une couturière professionnelle basée à Laval, avec plus de 20 ans d’expérience en retouches et en confection. J’offre des services de retouches et d’ajustements pour femmes, hommes et enfants 👖👗🥼👕. Que ce soit pour raccourcir un pantalon, une robe ou des manches, ou encore pour ajuster un vêtement afin qu’il vous aille parfaitement, je suis là pour vous aider. Et parfois, j’ai l’occasion d’utiliser un peu de ma magie! ✨ \n\nQu’il s’agisse de transformer un vêtement trop grand ou de faire en sorte qu’une robe trop petite puisse vous aller, je mets mon expérience et ma créativité à profit pour trouver la meilleure solution pour chaque pièce unique. Chaque vêtement est différent. Le prix est donc établi en fonction du temps, de l’expertise, du soin, des matériaux et de la complexité du travail requis. Pour cette raison, les soumissions sont faites individuellement, par article. \n\nPour obtenir une soumission, veuillez prendre rendez-vous ou communiquer directement avec moi. Je serai heureuse d’évaluer votre vêtement et de discuter de vos besoins 😊. Je m’efforce d’offrir à chaque client un service courtois, honnête et professionnel. N’hésitez pas à me contacter ou à consulter les réalisations présentées dans mon portfolio pour découvrir quelques-uns de mes travaux! \n\nAu plaisir de mettre mon expérience, ma créativité et mon savoir-faire à votre service! 💜🪡",
     },
     hero:{
         name: "Nata Couture",
@@ -69,11 +71,12 @@ const fr: Translations = {
     },
     gallery:{
         title: "Mini Portfolio",
+        subtext:"Toutes les photos ont été publiées avec l’autorisation des clients. Toute reproduction est interdite— propriété de NataCouture.",
         back: "← Retour",
     },
     book:{
         title: "Prendre un rendez-vous",
-        body: "Pour prendre un rendez-vous s'il-vous-plaît veuillez m'appeler au 514-561-4267",
+        body: "Je travaille durant la semaine et mon horaire est bien rempli. C’est pourquoi j’offre mes services sur rendez-vous seulement. Pour prendre rendez-vous ou obtenir des renseignements sur les prix, veuillez m’appeler au \n 514-561-4267. \n Je serai heureuse de répondre à vos questions et de discuter de vos besoins!",
         back: "← Retour",
     },
 };

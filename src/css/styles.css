@@ -214,7 +214,13 @@ img {
   background-size: cover;
   background-position: center;
   flex-direction: column;
+  justify-content: flex-end; /* anchor content to the BOTTOM of the hero,
+    instead of dead-center — this is what clears your baked-in logo
+    graphic, which sits higher up in the photo itself */
+  align-items: center;
   gap: 1.5rem;
+  padding-bottom: 4.5rem; /* room for the shortdesc + the scroll chevron
+    below it, so neither one crowds the bottom edge of the screen */
 }
 
 .hero__logo {
@@ -229,14 +235,43 @@ img {
   letter-spacing: 0.06em;
 }
 
-.hero__tagline {
+.hero__shortdesc {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 1rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.92;
+  font-size: clamp(1.5rem, 5.2vw, 2.0rem); /* bigger, and scales with viewport width */
+  letter-spacing: 0.1em;
+  opacity: 0.95;
+  max-width: 700px; /* keeps the line from stretching edge-to-edge on wide screens */
+  margin: 0;
 }
+.scroll-hint {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  opacity: 0.95;
+  animation: floatDown 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+}
+
+.scroll-hint__icon {
+  width: 60px;
+  height: 60px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 
 
 @keyframes floatDown {

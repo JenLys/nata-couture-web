@@ -11,6 +11,7 @@ export interface Translations {
     hero:{
         name: string;
         shortdesc: string;
+        scrollhint: string;
     };
     description:{
         eyebrow: string,
@@ -39,6 +40,7 @@ const en: Translations = {
     hero:{
         name: "Nata Couture",
         shortdesc: "Alteration and Tailoring Services by a Professional Seamstress with 20+ years in the industry",
+        scrollhint: "Scroll",
     },
     gallery:{
         title: "Portfolio Overview",
@@ -63,6 +65,7 @@ const fr: Translations = {
     hero:{
         name: "Nata Couture",
         shortdesc: "Services d'alterations de vêtements divers par une couturière expérimentée",
+        scrollhint: "Défiler",
     },
     gallery:{
         title: "Mini Portfolio",

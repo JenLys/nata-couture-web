@@ -576,7 +576,7 @@ img {
   /* Fix for the home page overlap with shortdesc + the map hanging low in Booking Apt*/
 
   .hero{
-    background-size: 95%;
+    background-size: 110%;
     background-position: center 2%;
     background-repeat: no-repeat;
     background-color: var(--accent);

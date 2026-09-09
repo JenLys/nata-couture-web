@@ -587,7 +587,7 @@ img {
     letter-spacing:0.04em;
     line-height:1.35;
     max-width:88%;
-    margin-top:-3rem;
+    margin-top: -3rem;
   }
 
   .static-page{
@@ -595,11 +595,11 @@ img {
     padding-bottom: 1.7rem;
   }
   .static-page p{
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .map-embed{
-    margin-top: 1rem;
+    margin-top: -1rem;
   }
   .map-embed iframe{
     height: 280px;

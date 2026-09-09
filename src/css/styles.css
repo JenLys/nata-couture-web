@@ -243,7 +243,7 @@ img {
 .hero__shortdesc {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: clamp(1.5rem, 5vw, 1.8rem); /* bigger, and scales with viewport width */
+  font-size: clamp(1.5rem, 5vw, 1.6rem); /* bigger, and scales with viewport width */
   letter-spacing: 0.2rem;
   opacity: 0.95;
   max-width: 94%; /* keeps the line from stretching edge-to-edge on wide screens */
@@ -577,8 +577,8 @@ img {
 
   .hero{
     background-size: 95%;
-    background-position: center, center 2%;
-    background-repeat: no-repeat, no-repeat;
+    background-position: center 2%;
+    background-repeat: no-repeat;
     background-color: var(--accent);
     gap: 0.75rem;
   }

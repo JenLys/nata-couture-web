@@ -573,13 +573,21 @@ img {
   /* Fix for the home page overlap with shortdesc + the map hanging low in Booking Apt*/
 
   .hero{
-    background-size: cover, contain;
-    background-position: center, center 15%;
+    background-size: covver, 42%;
+    background-position: center, center 2%;
+    background-repeat: no-repeat, no-repeat;
     background-color: var(--accent);
+    gap: 0.75rem;
+  }
+  .hero__shortdesc{
+    font-size:0.68rem;
+    letter-spacing:0.04em;
+    line-height:1.35;
+    max-width:88%;
   }
 
   .static-page{
-    padding-top: calc(var(--header-height)+2rem);
+    padding-top: calc(var(--header-height)+4rem);
     padding-bottom: 2.5rem;
   }
   .static-page p{

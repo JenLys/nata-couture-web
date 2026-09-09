@@ -570,5 +570,27 @@ img {
     max-width: 280px;
   }
 
+  /* Fix for the home page overlap with shortdesc + the map hanging low in Booking Apt*/
+
+  .hero{
+    background-size: cover, contain;
+    background-position: center, center 15%;
+    background-color: var(--accent);
+  }
+
+  .static-page{
+    padding-top: calc(var(--header-height)+2rem);
+    padding-bottom: 2.5rem;
+  }
+  .static-page p{
+    margin-bottom: 1.25rem;
+  }
+  .map-embed{
+    margin-top: 1rem;
+  }
+  .map-embed iframe{
+    height: 280px;
+  }
 
 }
+

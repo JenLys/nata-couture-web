@@ -577,7 +577,7 @@ img {
 
   .hero{
     background-size: 110%;
-    background-position: center 2%;
+    background-position: center 1%;
     background-repeat: no-repeat;
     background-color: var(--accent);
     gap: 0.75rem;
@@ -590,7 +590,7 @@ img {
   }
 
   .static-page{
-    padding-top: calc(var(--header-height) + 3.5rem);
+    padding-top: calc(var(--header-height) + 1rem);
     padding-bottom: 1.7rem;
   }
   .static-page p{

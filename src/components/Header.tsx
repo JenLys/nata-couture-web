@@ -1,7 +1,6 @@
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
 import {useRef} from "react";
-import BookApt from "../pages/BookApt";
 import {useLanguage} from "../language/LanguageSetter";
 
 

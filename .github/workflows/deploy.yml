@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v4 # pull your repo's code into the runner
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm # cache node_modules between runs for faster builds
       - run: npm ci # install dependencies from package-lock.json exactly
       - run: npm run build # same command you run locally — produces dist/

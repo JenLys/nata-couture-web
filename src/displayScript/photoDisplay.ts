@@ -24,7 +24,7 @@ const modules = import.meta.glob("../assets/gallery/*.{jpg,jpeg,png}", {
 }) as Record<string, string>;
 
 //photo array that gets iterated-- sort and map it
-export const photos: Photo[] = Object.keys(modules).sort().map((path, index)=> ({
+export const photos: Photo[] = Object.keys(modules).sort().map((path)=> ({
     src:modules[path],
     alt: "Portfolio photo showing alterations",
 }));

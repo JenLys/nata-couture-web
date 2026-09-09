@@ -1,0 +1,52 @@
+# GitHub Actions workflow: automatically builds and publishes the site
+# to GitHub Pages every time you push to the `main` branch.
+# Enable it once in your repo: Settings → Pages → Source → GitHub Actions.
+# You can also trigger it manually from the "Actions" tab (workflow_dispatch).
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main] # run automatically on every push to main
+  workflow_dispatch: # also allow manually clicking "Run workflow" in the Actions tab
+
+# Minimum permissions this workflow needs to read the repo and publish to Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If you push twice quickly, cancel the older in-progress deploy rather
+# than letting two deploys race each other.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  # Job 1: install dependencies, build the site, and package the result
+  # (the dist/ folder) as a "Pages artifact" ready to publish.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # pull your repo's code into the runner
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm # cache node_modules between runs for faster builds
+      - run: npm ci # install dependencies from package-lock.json exactly
+      - run: npm run build # same command you run locally — produces dist/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist # hand the built site off to the deploy job below
+
+  # Job 2: take the artifact from the build job and actually publish it
+  # to GitHub Pages. Runs only after "build" finishes successfully
+  # (needs: build).
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # the live URL, shown in the Actions run summary
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -19,5 +19,5 @@ export default defineConfig({
   // (with leading and trailing slashes), e.g. "/my-business-site/".
   // Using the wrong value here is the #1 cause of a blank white page
   // and broken image/CSS paths after deploying. See README.md.
-  base: "/nata-couture-web/",
+  base: "/",
 });
